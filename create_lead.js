@@ -32,7 +32,7 @@ function CreateLead(podConfig) {
 
 CreateLead.prototype = {};
 
-CreateCall.prototype._getEndpoint = function(path, token) {
+CreateLead.prototype._getEndpoint = function(path, token) {
     return 'https://crm.zoho.com/crm/private/xml/' + path + '?newFormat=1&authtoken=' + token + '&scope=crmapi';
 };
 
