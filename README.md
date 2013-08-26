@@ -1,17 +1,19 @@
-bip-pod-zoho
+![Zoho](zoho.png) bip-pod-zoho
 =======
 
-[Zoho](http://www.zoho.com) Pod for Bipio.  
+[Zoho](https://www.zoho.com/) pod for [bipio](https://bip.io).  
 
 ## Installation
 
-From bipio server install directory
+From bipio server root directory
 
     npm install bip-pod-zoho
+    ./tools/pod-install.js -a zoho [-u optional account-wide channel auto install]
 
-Auto install script will register the pod with the bipio server and add sparse
+The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'zoho'.
+keyed to 'zoho', based on the default config in the pod constructor.  It will also move the
+pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
