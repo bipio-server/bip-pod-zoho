@@ -19,9 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var request    = require('request'),
-xml2json = require('xml2json');
-
 function CreateCall(podConfig) {
     this.name = 'create_call';
     this.description = 'Create a Zoho Call',
@@ -31,11 +28,6 @@ function CreateCall(podConfig) {
 }
 
 CreateCall.prototype = {};
-
-CreateCall.prototype._getEndpoint = function(path, token) {
-    return 'https://crm.zoho.com/crm/private/xml/' + path + '?newFormat=1&authtoken=' + token + '&scope=crmapi';
-};
-
 CreateCall.prototype.getSchema = function() {
     return {
         'config' : { // config schema
@@ -50,23 +42,27 @@ CreateCall.prototype.getSchema = function() {
             properties : {
                 'id' : {
                     type : 'string',
-                    description : ''
+                    description : 'Call ID'
                 },
                 'created_time' : {
                     type : 'string',
-                    description : ''
+                    description : 'Created Time'
                 },
                 'modified_time' : {
                     type : 'string',
-                    description : ''
+                    description : 'Modified Time'
                 },
                 'created_by' : {
                     type : 'string',
-                    description : ''
+                    description : 'Created By'
                 },
                 'modified_by' : {
                     type : 'string',
-                    description : ''
+                    description : 'Modified By'
+                },
+                'message' : {
+                    type : 'string',
+                    description : 'Zoho Create Call Result'
                 }
             }
         },
@@ -74,31 +70,31 @@ CreateCall.prototype.getSchema = function() {
             properties : {
                 'subject' : {
                     type : 'string',
-                    description : ''
+                    description : 'Subject'
                 },
                 'call_type' : {
                     type : 'string',
-                    description : ''
+                    description : 'Type'
                 },
                 'call_purpose' : {
                     type : 'string',
-                    description : ''
+                    description : 'Purpose'
                 },
                 'lead_id' : {
                     type : 'string',
-                    description : ''
+                    description : 'Lead ID'
                 },
                 'call_start_time' : {
                     type : 'string',
-                    description : ''
+                    description : 'Start Time'
                 },
                 'call_duration' : {
                     type : 'string',
-                    description : ''
+                    description : 'Duration'
                 },
                 'description' : {
                     type : 'string',
-                    description : ''
+                    description : 'Description'
                 }
             }
         }
@@ -110,7 +106,7 @@ CreateCall.prototype.getSchema = function() {
  */
 CreateCall.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     // call creation struct
-    var struct = '<Calls>\n\
+    var body = '<Calls>\n\
 <row no="1">\n\
 <FL val="SMOWNERID"></FL>\n\
 <FL val="Subject">' + imports.subject + '</FL>\n\
@@ -118,30 +114,16 @@ CreateCall.prototype.invoke = function(imports, channel, sysImports, contentPart
 <FL val="Call Purpose">' + imports.call_purpose + '</FL>\n\
 <FL val="SEID">' + imports.lead_id + '</FL>\n\
 <FL val="SEMODULE">Leads</FL>\n\
-<FL val="Call Start Time">' + imports.start_time + '</FL>\n\
+<FL val="Call Start Time">' + (imports.start_time || (new Date()).toString()) + '</FL>\n\
 <FL val="Call Duration">' + imports.call_duration + '</FL>\n\
-<FL val="Description">' + imports.description || channel.config.default_description + '</FL>\n\
-<FL val="Billable">false<FL>\n\
-<FL val="Call Result">' + imports.call_result + '</FL>\n\
+<FL val="Description">' + (imports.description || channel.config.default_description) + '</FL>\n\
+<FL val="Call Result">' + (imports.call_result || '') + '</FL>\n\
 </row>\n\
-</Calls>',
+</Calls>';
 
-    uri = this._getEndpoint('Calls/insertRecords', sysImports.auth.issuer_token.password);
+// <FL val="Billable">false<FL>\n\
 
-    request(uri, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            // extract response data
-            var jsonBody = xml2json.toJson(body);
-            if (jsonBody.result.recorddetail) {
-                next(false, jsonBody.result.recorddetail);
-            } else {
-                console.error(body);
-                next(true, {});
-            }
-        } else {
-            console.error(response);
-        }
-    });
+    this.pod.post(channel, body, 'Calls/insertRecords', sysImports.auth.issuer_token.password, next);
 }
 
 // -----------------------------------------------------------------------------

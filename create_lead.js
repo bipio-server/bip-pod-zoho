@@ -19,9 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var request    = require('request'),
-xml2json = require('xml2json');
-
 function CreateLead(podConfig) {
     this.name = 'create_lead';
     this.description = 'Create a Zoho Lead',
@@ -31,11 +28,6 @@ function CreateLead(podConfig) {
 }
 
 CreateLead.prototype = {};
-
-CreateLead.prototype._getEndpoint = function(path, token) {
-    return 'https://crm.zoho.com/crm/private/xml/' + path + '?newFormat=1&authtoken=' + token + '&scope=crmapi';
-};
-
 CreateLead.prototype.getSchema = function() {
     return {
         'config' : { // config schema
@@ -79,6 +71,10 @@ CreateLead.prototype.getSchema = function() {
                 'modified_by' : {
                     type : 'string',
                     description : 'Modified By UserID'
+                },                
+                'message' : {
+                    type : 'string',
+                    description : 'Zoho Create Lead Result'
                 }
             }
         },
@@ -156,7 +152,7 @@ CreateLead.prototype.invoke = function(imports, channel, sysImports, contentPart
     }
 
     // lead creation struct
-    var struct = '<Leads>\n\
+    var body = '<Leads>\n\
 <row no="1">\n\
 <FL val="Lead Source">' + imports.lead_source + '</FL>\n\
 <FL val="Company">' + imports.company + '</FL>\n\
@@ -172,30 +168,7 @@ CreateLead.prototype.invoke = function(imports, channel, sysImports, contentPart
 </row>\n\
 </Leads>';
 
-    var uri = this._getEndpoint('Leads/insertRecords', sysImports.auth.issuer_token.password) + '&xmlData=' + encodeURIComponent(struct);
-
-    request.post(
-    {
-        url : uri
-    },
-    function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            // extract response data
-            var jsonBody = xml2json.toJson(body, {
-                object : true
-            });
-            if (jsonBody.response.error) {
-                var errNorm = this._description + ' ' + jsonBody.response.error.message + ' code[' + jsonBody.response.error.code + ']';
-                log(errNorm, channel, 'error');
-            } else {
-                exports = jsonBody.result.recorddetail;
-            }
-
-            next(error, exports);
-        } else {
-            log(response.body, channel, 'error');
-        }
-    });
+    this.pod.post(channel, body, 'Leads/insertRecords', sysImports.auth.issuer_token.password, next);
 }
 
 // -----------------------------------------------------------------------------
