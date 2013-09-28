@@ -17,33 +17,7 @@ pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
-## Actions
-
-### create_lead
-
-Create a Zoho Lead
-
-Sample Channel Config :
-
-```
-"action" : "zoho.create_lead",
-"config": {
-  "name_tokenizer": "reverse"
-}
-```
-
-### create_call
-
-Create a Zoho Call and Leads Lookup
-
-Sample Channel Config :
-
-```
-"action" : "zoho.create_call",
-"config": {
-  "default_description": "Default Call Description"
-}
-```
+## Documentation
 
 [Bipio Docs](https://bip.io/docs/pods/zoho)
 
