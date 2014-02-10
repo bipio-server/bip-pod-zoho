@@ -36,7 +36,7 @@ CreateLead.prototype.getSchema = function() {
                     description : "Name Tokenize Order",
                     type : "string",
                     oneOf : [{
-                        "$ref" : "#/definitions/tokenize_order"
+                        "$ref" : "#/config/definitions/tokenize_order"
                     }]
                 }
             },
