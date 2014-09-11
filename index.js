@@ -2,8 +2,8 @@
  *
  * The Bipio Zoho Pod.  Zoho Actions and Content Emitters
  *
- * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * @author Michael Pearson <github@m.bip.io>
+ * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ var Pod = require('bip-pod'),
     xml2json = require('xml2json'),
     Zoho = new Pod({
         name : 'zoho',
-        description : 'Zoho',
-        description_long : 'The Zoho Office Suite is a Web-based \n\
+        title : 'Zoho',
+        description : 'The <a href="https://www.zoho.com">Zoho</a> Office Suite is a Web-based \n\
 online office suite containing word processing, spreadsheets, presentations, \n\
 databases, note-taking, wikis, customer relationship management (CRM), project \n\
-management, invoicing, and other applications developed by ZOHO Corporation.',
+management, invoicing, and other applications.',
         authType : 'issuer_token',
         authMap : {
             password : 'API Token'
