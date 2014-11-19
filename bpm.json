@@ -1,0 +1,224 @@
+{
+  "name": "zoho",
+  "title": "Zoho",
+  "description": "The <a href=\"https://www.zoho.com\">Zoho</a> Office Suite is a Web-based \nonline office suite containing word processing, spreadsheets, presentations, \ndatabases, note-taking, wikis, customer relationship management (CRM), project \nmanagement, invoicing, and other applications.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "create_lead": {
+      "title": "Create a Zoho Lead",
+      "description": "Create a Zoho Lead",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "name_tokenizer": {
+            "description": "Name Tokenize Order",
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/tokenize_order"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "tokenize_order": {
+            "description": "For full names mapped to the `first_name` import, describes if the name should be tokenized by first_name last_name or last_name first_name",
+            "enum": [
+              "natural",
+              "reverse"
+            ],
+            "enum_label": [
+              "natural",
+              "reverse"
+            ],
+            "default": "natural",
+            "required": false
+          }
+        },
+        "disposition": [
+          "name_tokenizer"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Lead ID"
+          },
+          "created_time": {
+            "type": "string",
+            "description": "Created Time"
+          },
+          "modified_time": {
+            "type": "string",
+            "description": "Modified Time"
+          },
+          "created_by": {
+            "type": "string",
+            "description": "Created By UserID"
+          },
+          "modified_by": {
+            "type": "string",
+            "description": "Modified By UserID"
+          },
+          "message": {
+            "type": "string",
+            "description": "Zoho Create Lead Result"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "lead_source": {
+            "type": "string",
+            "description": "Lead Source"
+          },
+          "company": {
+            "type": "string",
+            "description": "Company Name"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First Name"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last Name"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email Address"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone"
+          },
+          "home_phone": {
+            "type": "string",
+            "description": "Home Phone"
+          },
+          "other_phone": {
+            "type": "string",
+            "description": "Other Phone"
+          },
+          "fax": {
+            "type": "string",
+            "description": "Fax #"
+          },
+          "mobile": {
+            "type": "string",
+            "description": "Mobile Phone"
+          }
+        },
+        "disposition": [
+          "lead_source",
+          "company",
+          "first_name",
+          "last_name",
+          "email",
+          "title",
+          "phone",
+          "home_phone",
+          "other_phone",
+          "fax",
+          "mobile"
+        ]
+      }
+    },
+    "create_call": {
+      "title": "Create a Zoho Call",
+      "description": "Create a Zoho Call",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "default_description": {
+            "type": "string",
+            "description": "Default Call Description"
+          }
+        },
+        "disposition": [
+          "default_description"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Call ID"
+          },
+          "created_time": {
+            "type": "string",
+            "description": "Created Time"
+          },
+          "modified_time": {
+            "type": "string",
+            "description": "Modified Time"
+          },
+          "created_by": {
+            "type": "string",
+            "description": "Created By"
+          },
+          "modified_by": {
+            "type": "string",
+            "description": "Modified By"
+          },
+          "message": {
+            "type": "string",
+            "description": "Zoho Create Call Result"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Subject"
+          },
+          "call_type": {
+            "type": "string",
+            "description": "Type"
+          },
+          "call_purpose": {
+            "type": "string",
+            "description": "Purpose"
+          },
+          "lead_id": {
+            "type": "string",
+            "description": "Lead ID"
+          },
+          "call_start_time": {
+            "type": "string",
+            "description": "Start Time"
+          },
+          "call_duration": {
+            "type": "string",
+            "description": "Duration"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description"
+          }
+        },
+        "disposition": [
+          "subject",
+          "call_type",
+          "call_purpose",
+          "lead_id",
+          "call_start_time",
+          "call_duration",
+          "description"
+        ]
+      }
+    }
+  }
+}
