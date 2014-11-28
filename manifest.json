@@ -1,12 +1,15 @@
 {
   "name": "zoho",
   "title": "Zoho",
-  "description": "The <a href=\"https://www.zoho.com\">Zoho</a> Office Suite is a Web-based \nonline office suite containing word processing, spreadsheets, presentations, \ndatabases, note-taking, wikis, customer relationship management (CRM), project \nmanagement, invoicing, and other applications.",
-  "url": "",
+  "description": "The Zoho Office Suite is a Web-based \nonline office suite containing word processing, spreadsheets, presentations, \ndatabases, note-taking, wikis, customer relationship management (CRM), project \nmanagement, invoicing, and other applications.",
+  "url": "https://www.zoho.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {
-    "strategy": "issuer_token"
+    "strategy": "issuer_token",
+    "authMap" : {
+        "password" : "API Token"
+    }
   },
   "rpcs": {},
   "actions": {

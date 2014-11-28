@@ -21,18 +21,7 @@
 var Pod = require('bip-pod'),
     request = require('request'),
     xml2json = require('xml2json'),
-    Zoho = new Pod({
-        name : 'zoho',
-        title : 'Zoho',
-        description : 'The <a href="https://www.zoho.com">Zoho</a> Office Suite is a Web-based \n\
-online office suite containing word processing, spreadsheets, presentations, \n\
-databases, note-taking, wikis, customer relationship management (CRM), project \n\
-management, invoicing, and other applications.',
-        authType : 'issuer_token',
-        authMap : {
-            password : 'API Token'
-        }
-    });
+    Zoho = new Pod();
 
 
 /**
@@ -93,9 +82,6 @@ Zoho.post = function(channel, body, path, password, next) {
 
     request(reqStruct, this._parseResponse(channel, next) );
 }
-
-Zoho.add(require('./create_lead.js'));
-Zoho.add(require('./create_call.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Zoho;

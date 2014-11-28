@@ -19,87 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function CreateCall(podConfig) {
-    this.name = 'create_call';
-    this.description = 'Create a Zoho Call',
-    this.trigger = false;
-    this.singleton = false;
-    this.podConfig = podConfig;
-}
+function CreateCall(podConfig) {}
 
 CreateCall.prototype = {};
-CreateCall.prototype.getSchema = function() {
-    return {
-        'config' : { // config schema
-            properties : {
-                'default_description' : {
-                    type : 'string',
-                    description : 'Default Call Description'
-                }
-            }
-        },
-        'exports' : {
-            properties : {
-                'id' : {
-                    type : 'string',
-                    description : 'Call ID'
-                },
-                'created_time' : {
-                    type : 'string',
-                    description : 'Created Time'
-                },
-                'modified_time' : {
-                    type : 'string',
-                    description : 'Modified Time'
-                },
-                'created_by' : {
-                    type : 'string',
-                    description : 'Created By'
-                },
-                'modified_by' : {
-                    type : 'string',
-                    description : 'Modified By'
-                },
-                'message' : {
-                    type : 'string',
-                    description : 'Zoho Create Call Result'
-                }
-            }
-        },
-        "imports": {
-            properties : {
-                'subject' : {
-                    type : 'string',
-                    description : 'Subject'
-                },
-                'call_type' : {
-                    type : 'string',
-                    description : 'Type'
-                },
-                'call_purpose' : {
-                    type : 'string',
-                    description : 'Purpose'
-                },
-                'lead_id' : {
-                    type : 'string',
-                    description : 'Lead ID'
-                },
-                'call_start_time' : {
-                    type : 'string',
-                    description : 'Start Time'
-                },
-                'call_duration' : {
-                    type : 'string',
-                    description : 'Duration'
-                },
-                'description' : {
-                    type : 'string',
-                    description : 'Description'
-                }
-            }
-        }
-    }
-}
 
 /**
  * Invokes (runs) the action.
