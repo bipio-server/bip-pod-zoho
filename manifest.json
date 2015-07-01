@@ -26,13 +26,13 @@
       "config": {
         "properties": {
           "name_tokenizer": {
-            "description": "Name Tokenize Order",
             "type": "string",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/tokenize_order"
               }
-            ]
+            ],
+            "title": "Name Tokenize Order"
           }
         },
         "definitions": {
@@ -58,27 +58,27 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Lead ID"
+            "title": "Lead ID"
           },
           "created_time": {
             "type": "string",
-            "description": "Created Time"
+            "title": "Created Time"
           },
           "modified_time": {
             "type": "string",
-            "description": "Modified Time"
+            "title": "Modified Time"
           },
           "created_by": {
             "type": "string",
-            "description": "Created By UserID"
+            "title": "Created By UserID"
           },
           "modified_by": {
             "type": "string",
-            "description": "Modified By UserID"
+            "title": "Modified By UserID"
           },
           "message": {
             "type": "string",
-            "description": "Zoho Create Lead Result"
+            "title": "Zoho Create Lead Result"
           }
         }
       },
@@ -86,47 +86,47 @@
         "properties": {
           "lead_source": {
             "type": "string",
-            "description": "Lead Source"
+            "title": "Lead Source"
           },
           "company": {
             "type": "string",
-            "description": "Company Name"
+            "title": "Company Name"
           },
           "first_name": {
             "type": "string",
-            "description": "First Name"
+            "title": "First Name"
           },
           "last_name": {
             "type": "string",
-            "description": "Last Name"
+            "title": "Last Name"
           },
           "email": {
             "type": "string",
-            "description": "Email Address"
+            "title": "Email Address"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "phone": {
             "type": "string",
-            "description": "Phone"
+            "title": "Phone"
           },
           "home_phone": {
             "type": "string",
-            "description": "Home Phone"
+            "title": "Home Phone"
           },
           "other_phone": {
             "type": "string",
-            "description": "Other Phone"
+            "title": "Other Phone"
           },
           "fax": {
             "type": "string",
-            "description": "Fax #"
+            "title": "Fax #"
           },
           "mobile": {
             "type": "string",
-            "description": "Mobile Phone"
+            "title": "Mobile Phone"
           }
         },
         "disposition": [
@@ -152,7 +152,7 @@
         "properties": {
           "default_description": {
             "type": "string",
-            "description": "Default Call Description"
+            "title": "Default Call Description"
           }
         },
         "disposition": [
@@ -163,27 +163,27 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Call ID"
+            "title": "Call ID"
           },
           "created_time": {
             "type": "string",
-            "description": "Created Time"
+            "title": "Created Time"
           },
           "modified_time": {
             "type": "string",
-            "description": "Modified Time"
+            "title": "Modified Time"
           },
           "created_by": {
             "type": "string",
-            "description": "Created By"
+            "title": "Created By"
           },
           "modified_by": {
             "type": "string",
-            "description": "Modified By"
+            "title": "Modified By"
           },
           "message": {
             "type": "string",
-            "description": "Zoho Create Call Result"
+            "title": "Zoho Create Call Result"
           }
         }
       },
@@ -191,31 +191,31 @@
         "properties": {
           "subject": {
             "type": "string",
-            "description": "Subject"
+            "title": "Subject"
           },
           "call_type": {
             "type": "string",
-            "description": "Type"
+            "title": "Type"
           },
           "call_purpose": {
             "type": "string",
-            "description": "Purpose"
+            "title": "Purpose"
           },
           "lead_id": {
             "type": "string",
-            "description": "Lead ID"
+            "title": "Lead ID"
           },
           "call_start_time": {
             "type": "string",
-            "description": "Start Time"
+            "title": "Start Time"
           },
           "call_duration": {
             "type": "string",
-            "description": "Duration"
+            "title": "Duration"
           },
           "description": {
             "type": "string",
-            "description": "Description"
+            "title": "Description"
           }
         },
         "disposition": [

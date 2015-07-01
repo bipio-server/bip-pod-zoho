@@ -38,7 +38,7 @@ CreateCall.prototype.invoke = function(imports, channel, sysImports, contentPart
 <FL val="SEMODULE">Leads</FL>\n\
 <FL val="Call Start Time">' + (imports.start_time || (new Date()).toString()) + '</FL>\n\
 <FL val="Call Duration">' + imports.call_duration + '</FL>\n\
-<FL val="Description">' + (imports.description || channel.config.default_description) + '</FL>\n\
+<FL val="Description">' + (imports.description || imports.default_description) + '</FL>\n\
 <FL val="Call Result">' + (imports.call_result || '') + '</FL>\n\
 </row>\n\
 </Calls>';
