@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-zoho",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Zoho Pod for Bipio",
   "keywords": [
     "bip",
@@ -19,8 +19,8 @@
   "main": ".",
   "dependencies": {
     "pkginfo": "0.2.x",
-    "node-uuid" : "1.3.3",
-    "xml2json" : ">=0.3.2"
+    "node-uuid": "1.3.3",
+    "xml2json": ">=0.3.2"
   },
   "engines": {
     "node": ">= 0.10.0"
